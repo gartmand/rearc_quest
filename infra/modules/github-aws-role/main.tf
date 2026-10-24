@@ -34,12 +34,12 @@ resource "aws_iam_role" "github_actions_env" {
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
           StringEquals = {
-            "://githubusercontent.com:aud" = "://amazonaws.com"
+            "token.actions.githubusercontent.com:aud" = [ "://amazonaws.com" ]
           }
           StringLike = {
             # Strictly pairs this environment's role to a specific GitHub environment and locks it to the specified repo 
-            "://githubusercontent.com:environment" = var.environment_name
-            "://githubusercontent.com:sub" = "repo:${github_org_or_user}/${var.github_repo}/*"
+            "token.actions.githubusercontent.com:environment" = [ var.environment_name ]
+            "token.actions.githubusercontent.com:sub" = [ "repo:${var.github_org_or_user}/${var.github_repo}/*" ]
           }
         }
       }
