@@ -4,16 +4,16 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = ">= 6.23.0"
     }
   }
 
   backend "s3" {
     # Pass the bucket via the CLI runner, by using -backend-config options.
-    key            = "production/core.tfstate"
-    region         = "us-east-1" # Northern Virginia
-    use_lockfile   = true
-    encrypt        = true
+    key          = "production/core.tfstate"
+    region       = "us-east-1" # Northern Virginia
+    use_lockfile = true
+    encrypt      = true
   }
 }
 
@@ -24,4 +24,8 @@ provider "aws" {
 # lookup the global oidc provider
 data "aws_iam_openid_connect_provider" "github_oidc" {
   url = "https://token.actions.githubusercontent.com"
+}
+
+data "aws_ecr_repository" "rearc_quest" {
+  name = "rearc_quest"
 }

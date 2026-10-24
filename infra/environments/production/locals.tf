@@ -1,7 +1,8 @@
 data "aws_caller_identity" "current" {}
 
 locals {
-  environment_name = "production"
-  account_id = data.aws_caller_identity.current.account_id
-  oidc_provider_arn = data.aws_iam_openid_connect_provider.github_oidc.arn
+  environment_name   = "production"
+  account_id         = data.aws_caller_identity.current.account_id
+  oidc_provider_arn  = data.aws_iam_openid_connect_provider.github_oidc.arn
+  ecr_repository_url = data.aws_ecr_repository.rearc_quest.repository_url
 }
