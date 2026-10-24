@@ -1,0 +1,14 @@
+# Local operational directories
+.terraform/
+
+# Dynamic state tracking files if run locally
+*.tfstate
+*.tfstate.*
+
+# Variables files that may contain secrets or local constants
+*.tfvars
+*.tfvars.json
+
+# Local crash logs or CLI overrides
+.terraform.rc
+terraform.rc
