@@ -10,5 +10,6 @@ variable "github_repo" {
 
 variable "ecr_image_tag" {
   description = "The tag of the image to deploy."
+  default     = "latest" # Might not be wise in Prod, but this is a demo.
   type        = string
 }
